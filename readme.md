@@ -14,7 +14,8 @@
 *A fully automated, serverless pipeline that ingests live orbital telemetry, computes 225M+ pairwise satellite distances, and fires real-time collision-risk alerts, end to end in under 6 minutes.*
 
 <!-- Hero shot / banner of the Mission Control dashboard (full-page screenshot, dark theme) -->
-![Mission Control Dashboard](docs/images/dashboard-hero.png)
+![Mission Control Dashboard](docs/images/dashboard-hero.png)<img width="734" height="415" alt="Screenshot 2026-08-13 at 9 26 20 AM" src="https://github.com/user-attachments/assets/e0dca43f-2245-4cac-9aec-95baa6a05d29" />
+
 
 </div>
 
