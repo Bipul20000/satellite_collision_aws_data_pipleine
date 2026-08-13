@@ -84,17 +84,14 @@ Metrics from the latest pipeline run:
 
 ## Dashboard Preview
 
-<!-- Status strip + Orbital Conjunction Risk Assessment table + Conjunction Radar (top half of dashboard) -->
-![Status Strip and Risk Table](docs/images/dashboard-status-and-risk-table.png)
-
 <!-- Orbital Density Heatmap + Kessler Index Trend + Distance Distribution + NEO Monitor (bottom half of dashboard) -->
 ![Density, Trend, and NEO Panels](docs/images/dashboard-lower-panels.png)
-
-<!-- Close-up of the animated SVG Conjunction Radar widget -->
-![Conjunction Radar](docs/images/conjunction-radar-closeup.png)
+<img width="733" height="414" alt="Screenshot 2026-08-13 at 9 29 00 AM" src="https://github.com/user-attachments/assets/fdcfa035-0c27-4730-8575-3fe689d154ed" />
 
 <!-- Sample SNS critical alert email -->
 ![Critical Alert Email](docs/images/sns-alert-email.png)
+<img width="727" height="491" alt="Screenshot 2026-08-13 at 9 29 34 AM" src="https://github.com/user-attachments/assets/3b5d8e12-76f9-437f-86eb-ca9d0788362f" />
+
 
 ---
 
