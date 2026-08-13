@@ -1,0 +1,65 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "x": 0, "y": 0, "width": 12, "height": 6,
+      "properties": {
+        "title": "Lambda Invocations & Errors",
+        "metrics": [
+          ["AWS/Lambda","Invocations","FunctionName","ssa-extract-celestrak"],
+          ["AWS/Lambda","Invocations","FunctionName","ssa-extract-nasa-neows"],
+          ["AWS/Lambda","Invocations","FunctionName","ssa-extract-noaa-goes"],
+          ["AWS/Lambda","Invocations","FunctionName","ssa-score-risk"],
+          ["AWS/Lambda","Errors","FunctionName","ssa-extract-celestrak",{"color":"#ff3b3b"}],
+          ["AWS/Lambda","Errors","FunctionName","ssa-score-risk",{"color":"#ff6b35"}]
+        ],
+        "period": 86400,
+        "stat": "Sum",
+        "view": "timeSeries"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12, "y": 0, "width": 12, "height": 6,
+      "properties": {
+        "title": "Lambda Duration (ms)",
+        "metrics": [
+          ["AWS/Lambda","Duration","FunctionName","ssa-extract-celestrak","Stat","Average"],
+          ["AWS/Lambda","Duration","FunctionName","ssa-score-risk","Stat","Average"],
+          ["AWS/Lambda","Duration","FunctionName","ssa-api-read","Stat","Average"]
+        ],
+        "period": 86400,
+        "stat": "Average",
+        "view": "timeSeries"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 0, "y": 6, "width": 12, "height": 6,
+      "properties": {
+        "title": "API Gateway Requests",
+        "metrics": [
+          ["AWS/ApiGateway","Count","ApiId","u4vqb9y4e7"],
+          ["AWS/ApiGateway","4XXError","ApiId","u4vqb9y4e7",{"color":"#ffaa00"}],
+          ["AWS/ApiGateway","5XXError","ApiId","u4vqb9y4e7",{"color":"#ff3b3b"}]
+        ],
+        "period": 3600,
+        "stat": "Sum",
+        "view": "timeSeries"
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12, "y": 6, "width": 12, "height": 6,
+      "properties": {
+        "title": "Glue Job Duration",
+        "metrics": [
+          ["Glue","glue.driver.aggregate.elapsedTime","JobName","ssa-transform-tle"]
+        ],
+        "period": 86400,
+        "stat": "Average",
+        "view": "timeSeries"
+      }
+    }
+  ]
+}

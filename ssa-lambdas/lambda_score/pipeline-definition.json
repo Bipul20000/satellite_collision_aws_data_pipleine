@@ -1,0 +1,74 @@
+{
+  "Comment": "SSA Nightly Pipeline",
+  "StartAt": "ExtractCelesTrak",
+  "States": {
+    "ExtractCelesTrak": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:ap-south-1:315466292382:function:ssa-extract-celestrak",
+        "Payload": {}
+      },
+      "ResultPath": "$.celestrak",
+      "Next": "ExtractParallel"
+    },
+    "ExtractParallel": {
+      "Type": "Parallel",
+      "Branches": [
+        {
+          "StartAt": "ExtractNASA",
+          "States": {
+            "ExtractNASA": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::lambda:invoke",
+              "Parameters": {
+                "FunctionName": "arn:aws:lambda:ap-south-1:315466292382:function:ssa-extract-nasa-neows",
+                "Payload": {}
+              },
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "ExtractNOAA",
+          "States": {
+            "ExtractNOAA": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::lambda:invoke",
+              "Parameters": {
+                "FunctionName": "arn:aws:lambda:ap-south-1:315466292382:function:ssa-extract-noaa-goes",
+                "Payload": {}
+              },
+              "End": true
+            }
+          }
+        }
+      ],
+      "ResultPath": "$.parallel",
+      "Next": "TransformTLE"
+    },
+    "TransformTLE": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "ssa-transform-tle",
+        "Arguments": {
+          "--S3_BUCKET": "ssa-kessler-bipul",
+          "--RUN_DATE.$": "$$.Execution.StartAt"
+        }
+      },
+      "ResultPath": "$.glue",
+      "Next": "ScoreRisk"
+    },
+    "ScoreRisk": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:ap-south-1:315466292382:function:ssa-score-risk",
+        "Payload": {}
+      },
+      "ResultPath": "$.score",
+      "End": true
+    }
+  }
+}
